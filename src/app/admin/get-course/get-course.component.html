@@ -1,0 +1,14 @@
+<div class="course-list">
+    <h2>Available Courses</h2>
+    <ul *ngIf="courses.length > 0; else noCourses">
+      <li *ngFor="let course of courses">
+        <h3>{{ course.title }}</h3>
+        <p>{{ course.description }}</p>
+        <p><strong>End Date:</strong> {{ course.endDate | date }}</p>
+      </li>
+    </ul>
+    <ng-template #noCourses>
+      <p>No courses available at the moment.</p>
+    </ng-template>
+  </div>
+  

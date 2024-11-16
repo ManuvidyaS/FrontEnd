@@ -1,23 +1,53 @@
-<!-- assign-course.component.html -->
-<div class="assign-course-form">
-    <h2>Assign Course to Employee</h2>
-  
-    <form (ngSubmit)="assignCourse()">
-      <div class="form-group">
-        <label for="course">Select Course:</label>
-        <select [(ngModel)]="selectedCourseId" name="course" class="form-control" required>
-          <option *ngFor="let course of courses" [value]="course.id">{{ course.name }}</option>
+<!-- Centered Form Container for Assign Course -->
+<div class="centered-container">
+  <div class="form-container shadow-lg rounded-4 p-4">
+    <h2 class="text-center mb-3 text-dark fw-bold">Assign Course to Employee</h2>
+
+    <!-- Display message after assignment -->
+    <div *ngIf="message" class="alert alert-success mt-3" role="alert">
+      {{ message }}
+    </div>
+
+    <form (ngSubmit)="assignCourse()" #assignForm="ngForm" novalidate>
+      <!-- Select Course -->
+      <div class="form-group mb-3">
+        <label for="courseSelect" class="form-label fw-semibold">Select Course:</label>
+        <select 
+          id="courseSelect" 
+          name="courseSelect" 
+          class="form-control border-dark rounded-3 shadow-sm" 
+          [(ngModel)]="selectedCourseId" 
+          required>
+          <option *ngFor="let course of courses" [value]="course.courseId">
+            {{ course.title }}
+          </option>
         </select>
       </div>
-  
-      <div class="form-group">
-        <label for="employee">Select Employee:</label>
-        <select [(ngModel)]="selectedEmployeeId" name="employee" class="form-control" required>
-          <option *ngFor="let employee of employees" [value]="employee.id">{{ employee.name }}</option>
+
+      <!-- Select Employee -->
+      <div class="form-group mb-3">
+        <label for="employeeSelect" class="form-label fw-semibold">Select Employee:</label>
+        <select 
+          id="employeeSelect" 
+          name="employeeSelect" 
+          class="form-control border-dark rounded-3 shadow-sm" 
+          [(ngModel)]="selectedEmployeeId" 
+          required>
+          <option *ngFor="let employee of employees" [value]="employee.id">
+            {{ employee.userName }}
+          </option>
         </select>
       </div>
-  
-      <button type="submit" class="btn btn-primary">Assign Course</button>
+
+      <!-- Submit Button -->
+      <div class="text-center">
+        <button 
+          type="submit" 
+          class="btn btn-dark btn-lg px-5 shadow-sm fw-semibold active-btn" 
+          [disabled]="!assignForm.valid">
+          Assign Course
+        </button>
+      </div>
     </form>
   </div>
-  
+</div>

@@ -1,40 +1,137 @@
-<!-- Navbar -->
-<nav class="navbar">
-    <ul class="navbar-menu">
-      <li><a routerLink="/home">Home</a></li>
-      <li><a routerLink="/add-new">Add New</a></li>
-      <li><a routerLink="/feedback">Feedback</a></li>
-      <li><a routerLink="/register">Register</a></li>
-    </ul>
-  </nav>
-  
-  <!-- Space below the navbar -->
-  <div class="navbar-space"></div>
-  
-  <!-- Form Container -->
-  <div class="form-container">
-    <h2>Add New Course</h2>
+<!-- Centered Form Container -->
+<div class="centered-container">
+  <div class="form-container shadow-lg rounded-4 p-4">
+    <h2 class="text-center mb-3 text-dark fw-bold">Add New Course</h2>
     <form #courseForm="ngForm" (ngSubmit)="onSubmit()" novalidate>
       <!-- Form Fields -->
-      <div class="form-group">
-        <label for="Title">Course Title</label>
-        <input type="text" id="Title" name="Title" class="form-control" [(ngModel)]="userObj.Title" required />
+      <div class="form-group mb-3">
+        <label for="Title" class="form-label fw-semibold">Course Title</label>
+        <input 
+          type="text" 
+          id="Title" 
+          name="Title" 
+          class="form-control border-dark rounded-3 shadow-sm" 
+          [(ngModel)]="userObj.Title" 
+          required 
+          placeholder="Enter the course title" />
       </div>
-  
-      <div class="form-group">
-        <label for="Description">Description</label>
-        <textarea id="Description" name="Description" class="form-control" [(ngModel)]="userObj.Description" required></textarea>
+
+      <div class="form-group mb-3">
+        <label for="Description" class="form-label fw-semibold">Description</label>
+        <textarea 
+          id="Description" 
+          name="Description" 
+          class="form-control border-dark rounded-3 shadow-sm" 
+          rows="2" 
+          [(ngModel)]="userObj.Description" 
+          required 
+          placeholder="Provide a description"></textarea>
       </div>
-  
-      <div class="form-group">
-        <label for="EndDate">End Date</label>
-        <input type="date" id="EndDate" name="EndDate" class="form-control" [(ngModel)]="userObj.EndDate" required />
+
+      <div class="form-group mb-3">
+        <label for="EndDate" class="form-label fw-semibold">End Date</label>
+        <input 
+          type="date" 
+          id="EndDate" 
+          name="EndDate" 
+          class="form-control border-dark rounded-3 shadow-sm" 
+          [(ngModel)]="userObj.EndDate" 
+          required />
       </div>
-  
+
+      <div class="form-group mb-3">
+        <label for="TotalModules" class="form-label fw-semibold">No. of Modules</label>
+        <input 
+          type="number" 
+          id="TotalModules" 
+          name="TotalModules" 
+          class="form-control border-dark rounded-3 shadow-sm" 
+          [(ngModel)]="userObj.TotalModules" 
+          required 
+          placeholder="Enter total modules" />
+      </div>
+
       <!-- Submit Button -->
-      <button type="submit" class="btn btn-primary" [disabled]="!courseForm.valid">
-        Add Course
-      </button>
+      <div class="text-center">
+        <button 
+          type="submit" 
+          class="btn btn-dark btn-lg px-5 shadow-sm fw-semibold active-btn" 
+          [disabled]="!courseForm.valid">
+          Add Course
+        </button>
+      </div>
     </form>
   </div>
+</div>
+
+<!-- CSS Styling -->
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    background-color: #e9ecef; /* Light gray background */
+    font-family: 'Roboto', sans-serif;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .centered-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f8f9fa; /* Slightly lighter background */
+  }
+
+  .form-container {
+    width: 100%;
+    max-width: 400px;
+    background: #fff; /* White form background */
+    border: 1px solid #dee2e6;
+    border-radius: 16px;
+    padding: 20px;
+  }
+
+  .form-label {
+    color: #343a40;
+    font-size: 14px;
+  }
+
+  .form-control {
+    font-size: 14px;
+    padding: 8px 12px;
+    border: 2px solid #343a40;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .form-control:focus {
+    outline: none;
+    border-color: #000;
+    box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.3);
+  }
+
+  .btn-dark {
+    background-color: #0f0f0f;
+    border-color: #0c0c0c;
+    transition: all 0.3s ease;
+  }
+
+  .btn-dark:hover {
+    background-color: #000;
+    border-color: #000;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+    transform: scale(1.02);
+  }
+
+  .btn-dark:active {
+    background-color: #080808;
+    border-color: #0f0f0f;
+    transform: translateY(2px);
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.2);
+  }
+
   
+</style>

@@ -21,14 +21,15 @@ export class AddCourseComponent {
     CourseId:0,
     Title:'',
     Description:'',
-    EndDate:''
+    EndDate:'',
+    TotalModules:0
   };
   router = inject(Router);
   http = inject(HttpClient);
   resultObj: ResponseDTO | undefined;
 
   onSubmit() {
-    this.http.post<ResponseDTO>("https://localhost:7723/api/Course", this.userObj)
+    this.http.post<ResponseDTO>("http://localhost:7777/learning-api/course", this.userObj)
       .subscribe({
         next: (res: ResponseDTO) => {
           this.resultObj = res;

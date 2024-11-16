@@ -1,34 +1,75 @@
 import { Component } from '@angular/core';
+
+
+
+import { Router } from '@angular/router';
+
+import { CommonModule } from '@angular/common';
+
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../../service/auth.service';
-import { Observer } from 'rxjs';
+
 
 @Component({
-  selector: 'app-register',
-  standalone: true,
-  imports: [FormsModule],
-  templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css'],
-  providers: [AuthService]
+
+ selector: 'app-register',
+
+ standalone: true,
+
+ imports: [CommonModule,FormsModule],
+
+ templateUrl: './register.component.html',
+
+ styleUrl: './register.component.css'
+
 })
+
 export class RegisterComponent {
-  email: string = '';
-  password: string = '';
-  confirmPassword: string = '';
 
-  constructor(private authService: AuthService) {}
+ registerData = {
 
-  onRegister() {
-    if (this.password === this.confirmPassword) {
-      const observer: Observer<any> = {
-        next: (response) => console.log('Registration successful', response),
-        error: (error) => console.error('Registration failed', error),
-        complete: () => console.log('Registration request completed'),
-      };
+   email: '',
 
-      this.authService.register(this.email, this.password).subscribe(observer);
-    } else {
-      console.error('Passwords do not match');
-    }
-  }
+   password: '',
+
+   name: '',
+
+   phoneNumber: '',
+
+   role: 'Employee',
+
+ };
+
+
+ successMessage = '';
+
+ errorMessage = '';
+
+
+ constructor(private authService: AuthService, private router: Router) {}
+
+
+ onRegister() {
+
+   this.authService.register(this.registerData).subscribe({
+
+     next: () => {
+
+       this.successMessage = 'Registration successful!';
+
+       this.errorMessage = '';
+
+       this.router.navigate(['/login']);
+
+     },
+
+     error: (err) => {
+
+       this.errorMessage = err.error?.message || 'Registration failed.';
+
+     },
+
+   });
+
+ }
 }

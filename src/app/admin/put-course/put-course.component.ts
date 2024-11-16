@@ -1,5 +1,5 @@
 import { Component, OnInit, inject } from '@angular/core';
-import { CourseService } from '../../Service/course.service';
+import { CourseService } from '../../service/course.service';
 import { ActivatedRoute } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';

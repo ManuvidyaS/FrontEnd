@@ -1,0 +1,106 @@
+<div class="user-container">
+    <!-- Navbar Section -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container-fluid">
+        <h2 class="navbar-brand" >User</h2>
+        <ul class="navbar-nav ms-auto">
+          <!-- Recommended Courses Link -->
+          <li class="nav-item">
+            <a routerLink="/user/recommended-courses" class="btn btn-outline-light me-2">Recommended Courses</a>
+          </li>
+          <li class="nav-item">
+
+
+            <a routerLink="/user/recommended-courses" class="btn btn-outline-light me-2">Courses</a>
+ 
+ 
+          </li>
+          <!-- Feedback Link -->
+          <li class="nav-item">
+            <a routerLink="/feedback" class="btn btn-outline-light">Feedback</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    
+  
+    <!-- Main Content Section -->
+    <div class="main-content mt-4 d-flex flex-column align-items-center">
+      <!-- Course Cards Section -->
+      <div class="course-cards container">
+        <div class="row justify-content-center">
+          <!-- Card 1 -->
+          <div class="col-md-3 mb-4">
+            <div class="course-card card h-100 text-center">
+              <img src="c4.jpg" class="card-img-top" alt="Course Image 1">
+              <div class="card-body">
+                <h5 class="card-title">Azure</h5>
+                <p class="card-text">Get specialized with Azure</p>
+              </div>
+            </div>
+          </div>
+          <!-- Card 2 -->
+          <div class="col-md-3 mb-4">
+            <div class="course-card card h-100 text-center">
+              <img src="c5.jpg" class="card-img-top" alt="Course Image 2">
+              <div class="card-body">
+                <h5 class="card-title">FullStack</h5>
+                <p class="card-text">Learn advance techniques</p>
+              </div>
+            </div>
+          </div>
+          <!-- Card 3 -->
+          <div class="col-md-3 mb-4">
+            <div class="course-card card h-100 text-center">
+              <img src="c3.jpg" class="card-img-top" alt="Course Image 3">
+              <div class="card-body">
+                <h5 class="card-title">C++</h5>
+                <p class="card-text">Programming fundamentals in C++</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <style>
+    /* Navbar styles */
+    .navbar {
+      background-color: #343a40;
+    }
+  
+    .navbar-brand {
+      color: #fff;
+      font-size: 1.25rem;
+    }
+  
+    .btn-outline-light {
+      font-size: 0.9rem;
+    }
+  
+    /* Course card styling */
+    .course-card {
+      border: 1px solid #ddd;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+  
+    .course-card .card-title {
+      font-size: 1rem;
+      font-weight: bold;
+    }
+  
+    .course-card .card-text {
+      font-size: 0.9rem;
+      color: #555;
+    }
+  
+    .main-content {
+      margin-top: 80px; /* Space for fixed navbar */
+    }
+  
+    .container {
+      max-width: 1200px;
+    }
+  </style>
+  

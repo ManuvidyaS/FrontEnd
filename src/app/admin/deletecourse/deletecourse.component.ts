@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { CourseService } from '../../Service/course.service';
+import { CourseService } from '../../service/course.service';
 
 @Component({
   selector: 'app-deletecourse',

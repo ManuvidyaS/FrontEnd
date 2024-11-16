@@ -1,31 +1,14 @@
-/* src/app/home-page/home-page.component.css */
 .homepage-container {
-  position: relative;
+  display: flex;
+  flex-direction: column;
   height: 100vh;
-  overflow: hidden;
 }
 
-.carousel, .carousel-inner, .carousel-item, .carousel-image {
-  height: 100vh;
+.carousel {
+  margin-top: 1rem; /* Optional, to give some space between navbar and carousel */
 }
 
 .carousel-image {
+  height: calc(100vh - 56px); /* Adjusts height to fit under the navbar */
   object-fit: cover;
-}
-
-.overlay-title {
-  position: absolute;
-  top: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 3rem;
-  z-index: 10;
-}
-
-.button-container {
-  position: absolute;
-  bottom: 50px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 10;
 }

@@ -1,0 +1,42 @@
+<div *ngIf="loading" class="loading">
+
+    Loading courses...
+ 
+  </div>
+ 
+ 
+  <div *ngIf="!loading && errorMessage" class="error">
+ 
+    {{ errorMessage }}
+ 
+  </div>
+ 
+ 
+  <div *ngIf="!loading && assignedCourses.length > 0">
+ 
+    <div class="course-card" *ngFor="let course of assignedCourses">
+ 
+      <h3>{{ course.courseName }}</h3>
+ 
+      <p>Modules Completed: {{ course.modulesCompleted }} / {{ course.totalModules }}</p>
+ 
+      <p>Progress: {{ course.progress }}%</p>
+ 
+      <p>End Date: {{ course.endDate | date }}</p>
+ 
+      <button [ngClass]="{ 'enrolled': course.progress > 0 }">
+ 
+        {{ course.progress > 0 ? 'Resume' : 'Enroll' }}
+ 
+      </button>
+ 
+    </div>
+ 
+  </div>
+ 
+ 
+  <div *ngIf="!loading && assignedCourses.length === 0" class="no-courses">
+ 
+    No assigned courses found.
+ 
+  </div>

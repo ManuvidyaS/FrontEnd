@@ -1,10 +1,72 @@
-<!-- src/app/auth/login/login.component.html -->
-<div class="auth-form">
-    <h2>Login</h2>
-    <form (ngSubmit)="onLogin()">
-      <input type="email" [(ngModel)]="email" name="email" placeholder="Email" required />
-      <input type="password" [(ngModel)]="password" name="password" placeholder="Password" required />
-      <button type="submit" class="btn btn-secondary">Login</button>
-    </form>
+<section class="vh-100 d-flex justify-content-center align-items-center">
+  <div class="container-fluid h-custom">
+    <div class="row d-flex justify-content-center align-items-center">
+      <!-- Image Section -->
+      <div class="col-md-6 col-lg-4 col-xl-3">
+        <img
+          src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
+          class="img-fluid"
+          alt="Sample image"
+        />
+      </div>
+
+      <!-- Form Section -->
+      <div class="col-md-8 col-lg-6 col-xl-3 offset-xl-1">
+        <div class="card p-3 shadow-sm">
+          <h4 class="text-center fw-bold mb-3">Login</h4>
+          <form (ngSubmit)="onLogin()" #loginForm="ngForm" novalidate>
+            <!-- Username Field -->
+            <div class="mb-3">
+              <label class="form-label fs-6" for="userName">Username</label>
+              <input
+                type="text"
+                id="userName"
+                class="form-control form-control-sm"
+                placeholder="Enter your username"
+                [(ngModel)]="loginData.userName"
+                name="userName"
+                required
+                #userNameField="ngModel"
+                [class.is-invalid]="userNameField.invalid && userNameField.touched"
+              />
+              <div class="invalid-feedback">Please enter your username.</div>
+            </div>
+
+            <!-- Password Field -->
+            <div class="mb-3">
+              <label class="form-label fs-6" for="password">Password</label>
+              <input
+                type="password"
+                id="password"
+                class="form-control form-control-sm"
+                placeholder="Enter your password"
+                [(ngModel)]="loginData.password"
+                name="password"
+                required
+                #passwordField="ngModel"
+                [class.is-invalid]="passwordField.invalid && passwordField.touched"
+              />
+              <div class="invalid-feedback">Please enter your password.</div>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="text-center text-lg-start mt-3">
+              <button
+                type="submit"
+                class="btn btn-dark btn-sm w-100"
+                [disabled]="loginForm.invalid"
+              >
+                Login
+              </button>
+            </div>
+
+            <!-- Error Message -->
+            <p *ngIf="errorMessage" class="text-danger text-center mt-2 fw-semibold">
+              {{ errorMessage }}
+            </p>
+          </form>
+        </div>
+      </div>
+    </div>
   </div>
-  
+</section>

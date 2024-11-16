@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class FeedbackService {
-  private feedbackUrl = 'https://localhost:7724/api/Feedback'; // Update with your backend URL
+  private feedbackUrl = 'http://localhost:7726/api/Feedback'; // Update with your backend URL
 
   constructor(private http: HttpClient) {}
 

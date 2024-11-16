@@ -1,65 +1,175 @@
 import { CommonModule } from '@angular/common';
+
 import { Component, OnInit } from '@angular/core';
+
 import { FormsModule } from '@angular/forms';
-import { CourseService } from '../../Service/course.service';
-import { AssignmentService } from '../../Service/assignment.service';
+
+import { CourseService } from '../../service/course.service';
+
+import { AssignmentService } from '../../service/assignment.service';
+
+export interface Course {
+
+ courseId: number;
+
+ title: string;
+
+ description: string;
+
+ endDate: string;
+
+}
+
+export interface Employee {
+
+ id: string; // assuming 'id' is a string (you can adjust based on your actual data type)
+
+ userName: string;
+
+ email: string;
+
+}
 
 @Component({
-  selector: 'app-assign-course',
-  standalone: true,
-  imports: [CommonModule, FormsModule],
-  templateUrl: './assign-course.component.html',
-  styleUrls: ['./assign-course.component.css'] // fix typo styleUrls
+
+ selector: 'app-assign-course',
+
+ standalone: true,
+
+ imports: [CommonModule,FormsModule],
+
+ providers:[AssignmentService],
+
+ templateUrl: './assign-course.component.html',
+
+ styleUrl: './assign-course.component.css'
+
 })
+
 export class AssignCourseComponent implements OnInit {
-  courses = [];
-  employees = [];
-  selectedCourseId: number | undefined;
-  selectedEmployeeId: string | undefined;
 
-  constructor(private assignmentService: AssignmentService) {}
+ courses: Course[] = []; // Define the type as Course[]
 
-  ngOnInit(): void {
-    this.loadCourses();
-    this.loadEmployees();
-  }
+ employees: Employee[] = []; // Define the type as Employee[]
 
-  loadCourses(): void {
-    this.assignmentService.getCourses().subscribe({
-      next: (data) => {
-        this.courses = data; // Store the courses in the component
-      },
-      error: (error) => {
-        console.error('Error loading courses:', error);
-      }
-    });
-  }
+ selectedCourseId: string | undefined;
 
-  loadEmployees(): void {
-    this.assignmentService.getEmployees().subscribe({
-      next: (data) => {
-        this.employees = data; // Store the employees in the component
-      },
-      error: (error) => {
-        console.error('Error loading employees:', error);
-      }
-    });
-  }
+ selectedEmployeeId: string | undefined;
 
-  assignCourse(): void {
-    if (this.selectedCourseId && this.selectedEmployeeId) {
-      this.assignmentService.assignCourse(this.selectedEmployeeId, this.selectedCourseId).subscribe({
-        next: (response) => {
-          console.log('Course assigned successfully:', response);
-          // Add your success logic here
-        },
-        error: (error) => {
-          console.error('Error assigning course:', error);
-          // Add your error handling logic here
-        }
-      });
-    } else {
-      alert('Please select both a course and an employee.');
+ message: string | undefined;
+
+ constructor(
+
+  private assignmentService: AssignmentService
+
+ ) {}
+
+ ngOnInit(): void {
+
+  // Fetch the list of courses and employees
+
+  this.getCourses();
+
+  this.getEmployees();
+
+ }
+
+ // Fetch courses from the backend
+
+ getCourses() {
+
+  this.assignmentService.getCourses().subscribe({
+
+   next: (data) => {
+
+    this.courses = data;
+
+   },
+
+   error: (error) => {
+
+    console.error('Error fetching courses:', error);
+
+   }
+
+  });
+
+ }
+
+ // Fetch employees from the backend
+
+ getEmployees() {
+
+  this.assignmentService.getEmployees().subscribe({
+
+   next: (data) => {
+
+    this.employees = data;
+
+   },
+
+   error: (error) => {
+
+    console.error('Error fetching employees:', error);
+
+   }
+
+  });
+
+ }
+
+ // Assign the selected course to the selected employee
+
+ assignCourse() {
+
+  if (this.selectedCourseId && this.selectedEmployeeId) {
+
+   const payload = {
+
+    courseId: this.selectedCourseId,
+
+    employeeId: this.selectedEmployeeId
+
+   };
+
+   this.assignmentService.assignCourseToEmployee(payload).subscribe({
+
+    next: (response) => {
+
+     // Check if the response indicates success
+
+     if (response.isSuccess) {
+
+      this.message = 'Course successfully assigned!';
+
+     } else {
+
+      this.message = response.message || 'Failed to assign course.';
+
+     }
+
+    },
+
+    error: (error) => {
+
+     console.error('Error assigning course:', error);
+
+     this.message = 'Failed to assign course.';
+
     }
+
+   });
+
+  } else {
+
+   this.message = 'Please select both a course and an employee.';
+
   }
+
+ }
+
 }
+
+
+
+
